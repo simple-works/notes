@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+//==============================================================================
+// ■ Server (bin/www)
+//------------------------------------------------------------------------------
+//     Serve the application on a node server.
+//==============================================================================
+
+//------------------------------------------------------------------------------
+// ● App-Config
+//------------------------------------------------------------------------------
+const app = require("../app");
+app.set("json spaces", 2);
+app.set(
+  "host",
+  process.env.NODE_ENV === "production" ? "" : "db.ambratolm.com"
+);
+app.set("port", process.env.PORT || 2021);
+
+//------------------------------------------------------------------------------
+// ● HTTP-Server
+//------------------------------------------------------------------------------
+const http = require("http");
+const server = http.createServer(app);
+const { host, port, env } = app.locals.settings;
+server.listen(port, host);
+
+//------------------------------------------------------------------------------
+// ● Server-Events
+//------------------------------------------------------------------------------
+server.on("listening", () => {
+  console.cls();
+  console.log("api-server".bgSuccess, "server is listening...".success);
+  console.log("running at:", `http://${host}:${port}`.info);
+  if (env === "production") console.log("mode: ", env.info);
+});
+//------------------------------------------------------------------------------
+server.on("error", error => {
+  if (error.syscall !== "listen") throw error;
+  switch (error.code) {
+    case "EACCES":
+      console.error(`${host}:${port} requires elevated privileges`.danger);
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(`${host}:${port} is already in use`.danger);
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+});

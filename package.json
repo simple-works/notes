@@ -1,0 +1,156 @@
+{
+  "name": "amb-notes",
+  "description": "Public Notes Sharing Web Application",
+  "version": "0.1.0",
+  "repository": "https://github.com/Ambratolm/amb-notes",
+  "private": true,
+  "engines": {
+    "node": "12.16.x",
+    "npm": "6.14.x"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "lint": "vue-cli-service lint --fix & eslint --fix server",
+    "build": "vue-cli-service build",
+    "readme": "markdown-toc -i README.md",
+    "api": "nodemon ./server/bin/www",
+    "api-debug": "set DEBUG=* & npm run api",
+    "db": "mongod --storageEngine=mmapv1 --dbpath ./database",
+    "start": "node ./server/bin/www"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@hapi/joi": "^17.1.1",
+    "animate.css": "^3.7.2",
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "buefy": "^0.8.15",
+    "bulma": "^0.8.1",
+    "bulmaswatch": "^0.7.5",
+    "colors": "^1.4.0",
+    "common-errors": "^1.0.5",
+    "core-js": "^3.6.4",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "i": "^0.3.6",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "morgan": "^1.10.0",
+    "register-service-worker": "^1.7.1",
+    "uuid": "^7.0.3",
+    "vee-validate": "^3.2.5",
+    "vue": "^2.6.11",
+    "vue-infinite-loading": "^2.4.5",
+    "vue-meta": "^2.3.3",
+    "vue-moment": "^4.1.0",
+    "vue-router": "^3.1.5",
+    "vuex": "^3.3.0",
+    "vuex-persist": "^2.2.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-plugin-pwa": "~4.3.0",
+    "@vue/cli-plugin-router": "~4.3.0",
+    "@vue/cli-plugin-vuex": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "prettier": "^1.19.1",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended",
+      "@vue/prettier"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "pwa": {
+    "name": "amb-notes",
+    "short_name": "amb-notes",
+    "themeColor": "#ffffff",
+    "msTileColor": "#000000",
+    "backgroundColor": "#ffffff",
+    "manifestOptions": {
+      "icons": [
+        {
+          "src": "img/icons/android-chrome-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        },
+        {
+          "src": "img/icons/android-chrome-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        },
+        {
+          "src": "img/icons/favicon-16x16.png",
+          "sizes": "16x16",
+          "type": "image/png"
+        },
+        {
+          "src": "img/icons/favicon-32x32.png",
+          "sizes": "32x32",
+          "type": "image/png"
+        },
+        {
+          "src": "img/icons/apple-touch-icon.png",
+          "sizes": "180x180",
+          "type": "image/png"
+        },
+        {
+          "src": "img/icons/mstile-150x150.png",
+          "sizes": "150x150",
+          "type": "image/png"
+        },
+        {
+          "src": "img/icons/safari-pinned-tab.svg",
+          "type": "image/svg",
+          "purpose": "maskable any"
+        }
+      ]
+    }
+  },
+  "vue": {
+    "devServer": {
+      "open": true,
+      "host": "app.ambratolm.com",
+      "port": "2020",
+      "proxy": {
+        "^/api": {
+          "target": "http://db.ambratolm.com:2021",
+          "ws": true,
+          "changeOrigin": true,
+          "pathRewrite": {
+            "^/api": "/"
+          }
+        }
+      }
+    }
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "server/db.json"
+    ]
+  }
+}
