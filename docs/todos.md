@@ -7,8 +7,8 @@
 
 ## New-Features
 
-- [ ] **Email Confirmation:** Send email & Make confirmation route
-- [ ] **Image Uploading:** Upload user avatar image (instead of URL only)
+- [ ] **Email Confirmation:** Send email & Make confirmation route (Use _nodemailer_ library)
+- [ ] **Image Uploading:** Upload user avatar image instead of URL only (Use _formidable_ library)
 
 ## Bugs-Fix
 

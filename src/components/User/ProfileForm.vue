@@ -152,7 +152,7 @@ export default {
         this.reset();
         this.success = "Changes saved";
       } catch (err) {
-        this.error = "Could not save changes";
+        this.error = this.$api.error(err).message || "Could not save changes";
       } finally {
         this.loading = false;
       }

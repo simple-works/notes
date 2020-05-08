@@ -3,28 +3,28 @@
 //------------------------------------------------------------------------------
 //     CREATE opeation for database CRUD operations.
 //=============================================================================
-const { AlreadyInUseError } = require("common-errors");
-const { pick, omit } = require("lodash");
 const { v4: uuidv4 } = require("uuid");
 //------------------------------------------------------------------------------
-const { alreadyInUse } = require("../../services/array");
-const { encrypt } = require("../../services/crypt");
+const { encrypt } = require("../services/crypt");
+const { pick, omit, alreadyInUse } = require("../services/utils/");
 //------------------------------------------------------------------------------
-const { $collection, $save } = require("../file");
+const { itemAlreadyInUseError } = require("./errors");
 
 //------------------------------------------------------------------------------
 // ● CREATE-Operation
 //------------------------------------------------------------------------------
-async function $create(data, collectionName, item, options = {}) {
+async function $create(collection, item, options = {}) {
   const {
     unique: fieldsToUniquify,
     encrypt: fieldsToEncrypt,
-    omit: fieldsToOmit
+    omit: fieldsToOmit,
+    nocase: ignoreCase
   } = options;
-  const collection = $collection(data, collectionName);
   if (fieldsToUniquify) {
-    if (alreadyInUse(collection, pick(item, fieldsToUniquify))) {
-      throw new AlreadyInUseError(collectionName, fieldsToUniquify.toString());
+    if (
+      alreadyInUse(collection, pick(item, fieldsToUniquify), { ignoreCase })
+    ) {
+      throw itemAlreadyInUseError(collection.name, fieldsToUniquify);
     }
   }
   if (fieldsToEncrypt) {
@@ -35,7 +35,7 @@ async function $create(data, collectionName, item, options = {}) {
   item.id = uuidv4();
   item.createdAt = new Date();
   collection.push(item);
-  await $save(data);
+  await collection.save();
   return omit(item, fieldsToOmit);
 }
 

@@ -117,16 +117,7 @@ export default {
           .replace({ name: this.refRoute || "Home" })
           .catch(() => null);
       } catch (err) {
-        if (err.response) {
-          if (err.response.status == 400) {
-            this.error = "Invalid fields";
-          }
-          if (err.response.status == 404) {
-            this.error = "Wrong Email or Password";
-          }
-        } else {
-          this.error = "Could not login";
-        }
+        this.error = this.$api.error(err).message || "Could not login";
       } finally {
         this.loading = false;
       }

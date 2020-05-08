@@ -3,28 +3,75 @@
 //------------------------------------------------------------------------------
 //     Database access logic.
 //==============================================================================
-const $create = require("./crud/create");
-const $read = require("./crud/read");
-const $update = require("./crud/update");
-const $delete = require("./crud/delete");
-const { $load } = require("./file");
+const { ArgumentNullError, NotFoundError } = require("common-errors");
+//------------------------------------------------------------------------------
+const { singularize, expand, embed } = require("../services/utils/");
+//------------------------------------------------------------------------------
+const $create = require("./$create");
+const $read = require("./$read");
+const $update = require("./$update");
+const $delete = require("./$delete");
+const { $load, $save } = require("./file");
 
 //------------------------------------------------------------------------------
 // ● Load-Database-API
 //------------------------------------------------------------------------------
-function loadDatabaseAPI(collectionName) {
+async function loadDatabaseAPI() {
+  const data = await $load();
+  return function(name) {
+    const utils = _utils(data);
+    const collection = _extractCollection(name, data);
+    collection.save = async () => $save(data);
+    collection.name = name;
+    return {
+      data,
+      async read(query = {}, options = {}) {
+        return await $read(collection, query, options, utils);
+      },
+      async create(item, options = {}) {
+        if (!item) new ArgumentNullError("item");
+        return await $create(collection, item, options, utils);
+      },
+      async update(id, item, options = {}) {
+        if (!id) new ArgumentNullError("id");
+        if (!item) new ArgumentNullError("item");
+        return await $update(collection, id, item, options, utils);
+      },
+      async delete(id, options = {}) {
+        if (!id) new ArgumentNullError("id");
+        return await $delete(collection, id, options, utils);
+      }
+    };
+  };
+}
+
+//------------------------------------------------------------------------------
+// ● Utils
+//------------------------------------------------------------------------------
+function _extractCollection(name, data) {
+  const collection = data[name];
+  if (!collection) {
+    throw new NotFoundError(`[${name}] collection doesn't exist`);
+  }
+  return collection;
+}
+function _utils(data) {
   return {
-    async read(query, options) {
-      return await $read(await $load(), collectionName, query, options);
+    expand(item, expandCollectionName) {
+      return expand(item, {
+        localField: `${singularize(expandCollectionName)}Id`,
+        foreignField: "id",
+        foreignArray: _extractCollection(expandCollectionName, data),
+        newField: singularize(expandCollectionName)
+      });
     },
-    async create(item, options) {
-      return await $create(await $load(), collectionName, item, options);
-    },
-    async update(id, item, options) {
-      return await $update(await $load(), collectionName, id, item, options);
-    },
-    async delete(id, options) {
-      return await $delete(await $load(), collectionName, id, options);
+    embed(item, srcCollectionName, embedCollectionName) {
+      return embed(item, {
+        localField: "id",
+        foreignField: `${singularize(srcCollectionName)}Id`,
+        foreignArray: _extractCollection(embedCollectionName, data),
+        newField: embedCollectionName
+      });
     }
   };
 }

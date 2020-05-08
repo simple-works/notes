@@ -8,7 +8,8 @@
       "description": "Making cool things for cool multimedias",
       "avatar": "https://3.bp.blogspot.com/-sUrbPwVErNo/Vd3kcH5K6-I/AAAAAAAADRo/9Hy0tFt6jXA/s1600/Guard_ASBP.jpg",
       "role": "admin",
-      "createdAt": "2010-01-01"
+      "createdAt": "2010-01-01",
+      "updatedAt": "2020-05-08T05:26:37.505Z"
     },
     {
       "id": "14d49905-dce0-4383-b95e-9c22f1884d48",
@@ -450,6 +451,46 @@
       "description": "magni corporis aut",
       "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/rdbannon/128.jpg",
       "createdAt": "2016-05-31T02:51:07.883Z"
+    },
+    {
+      "email": "AMBRATOLM@gmail.com",
+      "password": "$2a$12$123JG9jTbbmHkwmpQ8rdEe93RURNFBP4ULJPwKEjsFPGfkGaRXG8e",
+      "name": "AMBRATOLM",
+      "avatar": "/img/avatar.2e7f18ff.png",
+      "id": "c1fb584c-be8f-43c8-94e0-88b7df82d90d",
+      "createdAt": "2020-05-08T04:13:42.340Z"
+    },
+    {
+      "email": "somemail@email.com",
+      "password": "$2a$12$wmTW9lGA8HdkOJd06DC5Z.sms1wQ7TcYdJ87s3E1RcNmIafNmMbS.",
+      "name": "ambratolm@gmail.com",
+      "avatar": "/img/avatar.2e7f18ff.png",
+      "id": "eede9883-7eb9-4c47-9f92-5136e46e8824",
+      "createdAt": "2020-05-08T04:20:44.910Z"
+    },
+    {
+      "email": "elhafid.abdelhakim@gmail.com",
+      "password": "$2a$12$tEdG5uuJvlQS/XHUCDSpWOPrUjbWXcXfcp8ZKobymIG0CFD2ZeB0m",
+      "name": "ambratolmc",
+      "avatar": "/img/avatar.2e7f18ff.png",
+      "id": "1757fe54-ede1-4e60-a357-85d9f5cfcc40",
+      "createdAt": "2020-05-08T06:05:56.373Z"
+    },
+    {
+      "email": "AMbratolm@gmail.com",
+      "password": "$2a$12$v3eJNn3hZ.9EZNImuN2ufuYr7z9oQkQBdxY7Roj7qt92uBnCEqhlS",
+      "name": "ambratolM",
+      "avatar": "/img/avatar.2e7f18ff.png",
+      "id": "020f524f-354f-4928-9828-4922063a1b9a",
+      "createdAt": "2020-05-12T06:43:20.029Z"
+    },
+    {
+      "email": "kapskipsman@gmail.com",
+      "password": "$2a$12$ezH1psp/Y6DKbh0HSkKeX.PXRwAcy8DKyDRYbRG29s6Y6Veg.p.mW",
+      "name": "aMbRaToLm",
+      "avatar": "/img/avatar.2e7f18ff.png",
+      "id": "9459b1d3-bf50-4ed4-90cb-9c72e27ba441",
+      "createdAt": "2020-05-12T10:27:33.446Z"
     }
   ],
   "notes": [

@@ -4,6 +4,7 @@
 //------------------------------------------------------------------------------
 //     Serve the application on a node server.
 //==============================================================================
+const loadDb = require("../db/");
 
 //------------------------------------------------------------------------------
 // ● App-Config
@@ -27,11 +28,14 @@ server.listen(port, host);
 //------------------------------------------------------------------------------
 // ● Server-Events
 //------------------------------------------------------------------------------
-server.on("listening", () => {
+server.on("listening", async () => {
   console.cls();
+  if (env === "production") console.log("mode: ", env.info);
   console.log("api-server".bgSuccess, "server is listening...".success);
   console.log("running at:", `http://${host}:${port}`.info);
-  if (env === "production") console.log("mode: ", env.info);
+  app.locals.db = await loadDb();
+  console.log("database".bgSuccess, "database is loaded.".success);
+  console.log("running at:", `file-system`.info);
 });
 //------------------------------------------------------------------------------
 server.on("error", error => {

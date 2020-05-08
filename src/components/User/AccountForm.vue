@@ -184,17 +184,7 @@ export default {
           });
         }
       } catch (err) {
-        if (err.response) {
-          if (err.response.status == 400) {
-            this.error = "Invalid fields";
-          }
-          if (err.response.status == 409) {
-            this.error = "Email already exists";
-          }
-        } else {
-          console.log(err);
-          this.error = "Could not save changes";
-        }
+        this.error = this.$api.error(err).message || "Could not save changes";
       } finally {
         this.loading = false;
       }

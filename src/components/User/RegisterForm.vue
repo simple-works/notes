@@ -146,16 +146,7 @@ export default {
           .replace({ name: this.refRoute || "Home" })
           .catch(() => null);
       } catch (err) {
-        if (err.response) {
-          if (err.response.status == 400) {
-            this.error = "Invalid fields";
-          }
-          if (err.response.status == 409) {
-            this.error = "User already exists";
-          }
-        } else {
-          this.error = "Could not register";
-        }
+        this.error = this.$api.error(err).message || "Could not register";
       } finally {
         this.loading = false;
       }

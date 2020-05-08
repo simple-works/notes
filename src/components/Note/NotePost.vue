@@ -139,8 +139,7 @@ export default {
         this.$emit("delete", deletedNote);
         this.$toast("Note deleted", "is-success");
       } catch (err) {
-        console.error(err);
-        this.error = "Could not remove note";
+        this.error = this.$api.error(err).message || "Could not remove note";
       } finally {
         this.loading = false;
       }

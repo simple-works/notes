@@ -117,7 +117,8 @@ export default {
         this.user = await this.$api("users").read({
           name: this.userName,
           $embed: "notes",
-          $one: true
+          $one: true,
+          $nocase: true
         });
         this.notesCount = await this.$api("notes").read({
           userId: this.user.id,

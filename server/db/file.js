@@ -5,7 +5,6 @@
 //==============================================================================
 const fs = require("fs");
 const path = require("path");
-const { NotFoundError } = require("common-errors");
 
 //------------------------------------------------------------------------------
 // ● Database-File-Path
@@ -34,7 +33,7 @@ async function $save(data) {
   return new Promise((resolve, reject) => {
     const dataJson = JSON.stringify(data, null, 2);
     if (dataJson === undefined) {
-      reject(new Error("Wrong data object"));
+      reject(new Error("Invalid database file"));
     } else {
       fs.writeFile(dataPath, dataJson, "utf-8", err => {
         if (err) {
@@ -48,21 +47,9 @@ async function $save(data) {
 }
 
 //------------------------------------------------------------------------------
-// ● Extract-Collection
-//------------------------------------------------------------------------------
-function $collection(data, name) {
-  const collection = data[name];
-  if (!collection) {
-    throw new NotFoundError(`[${name}] collection doesn't exist`);
-  }
-  return collection;
-}
-
-//------------------------------------------------------------------------------
 // ● Exports
 //------------------------------------------------------------------------------
 module.exports = {
   $save,
-  $load,
-  $collection
+  $load
 };

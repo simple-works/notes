@@ -6,7 +6,10 @@
 const express = require("express");
 const { HttpStatusError, NotFoundError } = require("common-errors");
 //------------------------------------------------------------------------------
-const routes = [require("./users-routes"), require("./notes-routes")];
+const { stringToArray } = require("../services/utils/");
+//------------------------------------------------------------------------------
+const usersRouter = require("./users-routes");
+const notesRouter = require("./notes-routes");
 
 //------------------------------------------------------------------------------
 // ● Router
@@ -18,18 +21,20 @@ const router = express.Router();
 //------------------------------------------------------------------------------
 router.use((req, res, next) => {
   req.options = {};
-  for (const prop in req.query)
+  for (const prop in req.query) {
     if (prop.startsWith("$") || prop.startsWith("_")) {
       req.options[prop.substring(1)] = req.query[prop];
       delete req.query[prop];
     }
+  }
+  req.options.omit = stringToArray(req.options.omit);
   next();
 });
 
 //------------------------------------------------------------------------------
 // ● Main-Routes
 //------------------------------------------------------------------------------
-router.use(routes);
+router.use([usersRouter, notesRouter]);
 
 //------------------------------------------------------------------------------
 // ● Other-Routes

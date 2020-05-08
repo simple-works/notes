@@ -99,8 +99,7 @@ export default {
         }
         this.$emit("action");
       } catch (err) {
-        console.error(err);
-        this.error = "Could not save note";
+        this.error = this.$api.error(err).message || "Could not save note";
       } finally {
         this.loading = false;
       }

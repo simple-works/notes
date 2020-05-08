@@ -29,7 +29,9 @@ client.interceptors.request.use(
     }
     return config;
   },
-  error => Promise.reject(error)
+  error => {
+    throw error;
+  }
 );
 
 //------------------------------------------------------------------------------
@@ -70,6 +72,16 @@ function dbApiClient(collectionName) {
     }
   };
 }
+
+//------------------------------------------------------------------------------
+// ● Extract-API-Error
+//------------------------------------------------------------------------------
+dbApiClient.error = err => {
+  if (err.isAxiosError) {
+    return err.response.data;
+  }
+  console.error(err);
+};
 
 //------------------------------------------------------------------------------
 // ► Exports

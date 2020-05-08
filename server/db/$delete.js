@@ -3,22 +3,20 @@
 //------------------------------------------------------------------------------
 //     DELETE opeation for database CRUD operations.
 //=============================================================================
-const { NotFoundError } = require("common-errors");
-const { matches, remove, omit } = require("lodash");
+const { matches, remove } = require("../services/utils/");
 //------------------------------------------------------------------------------
-const { $collection, $save } = require("../file");
+const { itemNotFoundError } = require("./errors");
 
 //------------------------------------------------------------------------------
 // ● DELETE-Operation
 //------------------------------------------------------------------------------
-async function $delete(data, collectionName, id, options = {}) {
+async function $delete(collection, id, options = {}) {
   const { omit: fieldsToOmit } = options;
-  const collection = $collection(data, collectionName);
   const item = remove(collection, matches({ id }))[0];
   if (!item) {
-    throw new NotFoundError(collectionName);
+    throw itemNotFoundError(collection.name, { id });
   }
-  await $save(data);
+  await collection.save();
   return omit(item, fieldsToOmit);
 }
 

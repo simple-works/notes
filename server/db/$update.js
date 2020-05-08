@@ -3,34 +3,34 @@
 //------------------------------------------------------------------------------
 //     UPDATE opeation for database CRUD operations.
 //=============================================================================
-const { AlreadyInUseError, NotFoundError } = require("common-errors");
-const { omit, findIndex, pick, reject } = require("lodash");
+const { pick, omit } = require("../services/utils/");
+const { findIndex, reject, alreadyInUse } = require("../services/utils/");
+const { encrypt } = require("../services/crypt");
 //------------------------------------------------------------------------------
-const { alreadyInUse } = require("../../services/array");
-const { encrypt } = require("../../services/crypt");
-//------------------------------------------------------------------------------
-const { $collection, $save } = require("../file");
+const { itemNotFoundError, itemAlreadyInUseError } = require("./errors");
 
 //------------------------------------------------------------------------------
 // ● UPDATE-Opeation
 //------------------------------------------------------------------------------
-async function $update(data, collectionName, id, item, options = {}) {
+async function $update(collection, id, item, options = {}) {
   const {
     partial,
     unique: fieldsToUniquify,
     encrypt: fieldsToEncrypt,
-    omit: fieldsToOmit
+    omit: fieldsToOmit,
+    nocase: ignoreCase
   } = options;
-  const collection = $collection(data, collectionName);
   let index = findIndex(collection, { id });
   if (index < 0) {
-    throw new NotFoundError(collectionName);
+    throw itemNotFoundError(collection.name, { id });
   }
   if (fieldsToUniquify) {
     if (
-      alreadyInUse(reject(collection, { id }), pick(item, fieldsToUniquify))
+      alreadyInUse(reject(collection, { id }), pick(item, fieldsToUniquify), {
+        ignoreCase
+      })
     ) {
-      throw new AlreadyInUseError(collectionName, fieldsToUniquify.toString());
+      throw itemAlreadyInUseError(collection.name, fieldsToUniquify);
     }
   }
   if (fieldsToEncrypt) {
@@ -44,7 +44,7 @@ async function $update(data, collectionName, id, item, options = {}) {
   collection[index] = partial
     ? { ...collection[index], ...item }
     : { id, ...item };
-  await $save(data);
+  await collection.save();
   return omit(collection[index], fieldsToOmit);
 }
 
