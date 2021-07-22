@@ -140,7 +140,7 @@
       "port": "2020",
       "proxy": {
         "^/api": {
-          "target": "http://db.ambratolm.com:2021",
+          "target": "http://api.ambratolm.com:2021",
           "ws": true,
           "changeOrigin": true,
           "pathRewrite": {

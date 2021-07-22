@@ -13,7 +13,7 @@ const app = require("../app");
 app.set("json spaces", 2);
 app.set(
   "host",
-  process.env.NODE_ENV === "production" ? "" : "db.ambratolm.com"
+  process.env.NODE_ENV === "production" ? "" : "api.ambratolm.com"
 );
 app.set("port", process.env.PORT || 2021);
 

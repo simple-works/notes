@@ -15,7 +15,7 @@ const {
 } = require("./errors");
 
 //------------------------------------------------------------------------------
-// ● CREATE-Opeation
+// ● READ-Opeation
 //------------------------------------------------------------------------------
 async function $read(collection, query = {}, options = {}, utils = {}) {
   const { one: oneItem, count } = options;
