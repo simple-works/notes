@@ -1,6 +1,6 @@
 # ![Icon](./icon.png?raw=true) Amb-Notes
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Ambratolm/amb-notes/Node.js%20CI)](https://github.com/Ambratolm/amb-notes/actions/workflows/node.js.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Ambratolm/amb-notes/Node.js%20CI?logo=github)](https://github.com/Ambratolm/amb-notes/actions/workflows/node.js.yml)
 [![Web](https://img.shields.io/badge/web-blue?logo=w3c)](https://github.com/topics/web)
 [![JavaScript](https://img.shields.io/badge/javaScript-blue?logo=javascript)](https://github.com/topics/javascript)
 [![VueJS](https://img.shields.io/github/package-json/dependency-version/Ambratolm/ambratolm-web/vue?logo=vue.js)](https://github.com/topics/vuejs)
