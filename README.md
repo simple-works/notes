@@ -1,32 +1,39 @@
-# :memo: Amb-Notes
+# ![Icon](./icon.png?raw=true) Amb-Notes
 
-[**:earth_africa: View Demo**](https://amb-notes.herokuapp.com)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Ambratolm/amb-notes/Node.js%20CI)](https://github.com/Ambratolm/amb-notes/actions/workflows/node.js.yml)
+[![Web](https://img.shields.io/badge/web-blue?logo=w3c)](https://github.com/topics/web)
+[![JavaScript](https://img.shields.io/badge/javaScript-blue?logo=javascript)](https://github.com/topics/javascript)
+[![VueJS](https://img.shields.io/github/package-json/dependency-version/Ambratolm/ambratolm-web/vue?logo=vue.js)](https://github.com/topics/vuejs)
+[![Bulma](https://img.shields.io/github/package-json/dependency-version/Ambratolm/ambratolm-web/bulma?logo=bulma)](https://github.com/topics/bulma)
 
 Public Notes Sharing Web Application.
 
+[**🌐 View Live Demo**](https://amb-notes.herokuapp.com)
+
 <!-- ![amb-notes-screenshot](/screenshot.gif?raw=true "Screenshot of the app") -->
 
-## :book: Table of contents
+## 📖 Table of contents
 
 <!-- toc -->
 
-- [:scroll: Introduction](#scroll-introduction)
-- [:checkered_flag: Getting started](#checkered_flag-getting-started)
-- [:arrow_forward: Deployment](#arrow_forward-deployment)
-- [:octocat: Technologies](#octocat-technologies)
-  - [:computer: Frontend](#computer-frontend)
-  - [:crystal_ball: Backend](#crystal_ball-backend)
-- [:triangular_ruler: Design](#triangular_ruler-design)
+- [📜 Introduction](#-introduction)
+- [🏁 Getting started](#-getting-started)
+- [✈️ Deployment](#-deployment)
+- [📐 Design](#-design)
+- [🚀 Development](#-development)
+  - [🏭 Environment](#-environment)
+  - [🌕 Frontend](#-frontend)
+  - [🌑 Backend](#-backend)
 
 <!-- tocstop -->
 
-## :scroll: Introduction
+## 📜 Introduction
 
 This is a simple **Web application** that allows users to **post public notes** that others can see on the home page. <br>
 It is mainly built with **VueJS** and **ExpressJS**. It implements many **common features** using many **libraries**. <br>
 This project can be used for **learning purposes** or as a **starter template** for building similar applications.
 
-## :checkered_flag: Getting started
+## 🏁 Getting started
 
 1. Clone the repository:
 
@@ -60,7 +67,7 @@ npm run serve
 npm run api
 ```
 
-## :arrow_forward: Deployment
+## ✈️ Deployment
 
 To deploy the project in a node environment:
 
@@ -86,66 +93,59 @@ npm start
 
 You can also do the same to deploy locally.
 
-## :octocat: Technologies
+## 📐 Design
+
+- [👚 Models](./docs/models.md)
+- [✨ Features](./docs/features.md)
+- [📝 ToDos](./docs/todos.md)
+
+## 🚀 Development
 
 The initial project was generated using [**Vue CLI**](https://github.com/vuejs/vue-cli) tool.
 
-### :computer: Frontend
+### 🏭 Environment
 
-This frontend app is mainly powered by Vue and its integrated packages:
+- Runtime: [**NodeJS**](https://github.com/nodejs)
+- Package Manager: [**NPM**](https://github.com/npm)
+- Editor: [**Sublime Text**](https://www.sublimetext.com)
 
-| Library                                               | Use                          |
-| :---------------------------------------------------- | :--------------------------- |
-| [**VueJS**](https://github.com/vuejs/vue)             | Main JS framework            |
-| [**Vue Router**](https://github.com/vuejs/vue-router) | Routing                      |
-| [**Vuex**](https://github.com/vuejs/vuex)             | Centralized state management |
+### 🌕 Frontend
 
-The **GUI** is powered by:
+- ⚛️ Core:
+  - Main: [**VueJS**](https://github.com/vuejs/vue)
+  - Routing: [**Vue Router**](https://github.com/vuejs/vue-router)
+  - State Management: [**Vuex**](https://github.com/vuejs/vuex)
+- 🎨 UI:
+  - Main: [**Bulma**](https://github.com/jgthms/bulma) / [**Buefy**](https://github.com/buefy/buefy)
+  - Theme: [**Bulmaswatch**](https://github.com/jenil/bulmaswatch)
+  - Icons: [**Font Awesome**](https://github.com/FortAwesome/Font-Awesome)
+  - Animations: [**Animate.CSS**](https://github.com/daneden/animate.css)
+- 🔧 Utils:
+  - AJAX: [**Axios**](https://github.com/axios/axios)
+  - HTML Metadata: [**Vue Meta**](https://github.com/nuxt/vue-meta)
+  - Dates Format: [**Moment**](https://github.com/moment/moment/) / [**Vue Moment**](https://github.com/brockpetrie/vue-moment)
+  - Form Validation: [**VeeValidate**](https://github.com/logaretm/vee-validate)
+  - Data Persistence: [**VuexPersist**](https://github.com/championswimmer/vuex-persist)
+  - Array Handling and Common Tasks: [**Lodash**](https://github.com/lodash/lodash)
 
-| Library                                                       | Use                 |
-| :------------------------------------------------------------ | :------------------ |
-| [**Bulma**](https://github.com/jgthms/bulma)                  | Main CSS framework  |
-| [**Buefy**](https://github.com/buefy/buefy)                   | Bulma UI components |
-| [**Bulmaswatch**](https://github.com/jenil/bulmaswatch)       | Bulma themes        |
-| [**FontAwesome**](https://github.com/FortAwesome/FontAwesome) | Icons               |
-| [**AnimateCSS**](https://github.com/daneden/animate.css)      | CSS animations      |
-
-The frontend app is using these **utilities**:
-
-| Library                                                            | Use                            |
-| :----------------------------------------------------------------- | :----------------------------- |
-| [**Axios**](https://github.com/axios/axios)                        | AJAX calls                     |
-| [**Vue Meta**](https://github.com/nuxt/vue-meta)                   | HTML metadata                  |
-| [**Moment**](https://github.com/moment/moment/)/                   | Dates format                   |
-| [**Vue Moment**](https://github.com/brockpetrie/vue-moment)        | Moment pipes                   |
-| [**VeeValidate**](https://github.com/logaretm/vee-validate)        | Form validation                |
-| [**VuexPersist**](https://github.com/championswimmer/vuex-persist) | Data persistence               |
-| [**Lodash**](https://github.com/lodash/lodash)                     | Common and array related tasks |
-
-### :crystal_ball: Backend
+### 🌑 Backend
 
 The backend **API** and **Database** (_Using [file system](https://nodejs.org/api/fs.html) for the moment_) are powered by:
 
-| Library                                             | Use                    |
-| :-------------------------------------------------- | :--------------------- |
-| [**Node**](https://github.com/nodejs/node)          | JS runtime             |
-| [**Express**](https://github.com/expressjs/express) | Main Node JS framework |
+- ⚛️ Core:
+  - Main: [**NodeJS**](https://github.com/nodejs/node) / [**ExpressJS**](https://github.com/expressjs/express)
+- 💽 Database:
+  - Main: [**File System**](https://nodejs.org/api/fs.html) _(⚠️ For the moment)_
+- 🔧 Utils:
+  - Array Handling: [**Lodash**](https://github.com/lodash/lodash)
+  - Data Validation: [**Joi**](https://github.com/hapijs/joi)
+  - Authentication: [**JsonWebToken**](https://github.com/auth0/node-jsonwebtoken)
+  - ID Generation: [**UuidJS**](https://github.com/uuidjs/uuid)
+  - Password Hash Generation: [**Bcrypt.JS**](https://github.com/dcodeIO/bcrypt.js)
+  - Error Classification: [**Common Errors**](https://github.com/shutterstock/node-common-errors)
+  - Console Coloration: [**Colors.JS**](https://github.com/Marak/colors.js)
+  - Mock Data Generation: [**Faker.JS**](https://github.com/marak/Faker.js)
 
-The backend app is using these **utilities**:
+## 📄 License
 
-| Library                                                                | Use                        |
-| :--------------------------------------------------------------------- | :------------------------- |
-| [**Lodash**](https://github.com/lodash/lodash)                         | Arrays data querying       |
-| [**Joi**](https://github.com/hapijs/joi)                               | Data validation            |
-| [**JsonWebToken**](https://github.com/auth0/node-jsonwebtoken)         | Authentication             |
-| [**Uuid**](https://github.com/uuidjs/uuid)                             | IDs generation             |
-| [**BcryptJS**](https://github.com/dcodeIO/bcrypt.js)                   | Password hashes generation |
-| [**CommonErrors**](https://github.com/shutterstock/node-common-errors) | Errors classes             |
-| [**Colors**](https://github.com/Marak/colors.js)                       | Console colorations        |
-| [**Faker**](https://github.com/marak/Faker.js)                         | Mock test data generation  |
-
-## :triangular_ruler: Design
-
-- :paperclip: [Models](/docs/models.md)
-- :paperclip: [Features](/docs/features.md)
-- :paperclip: [ToDos](/docs/todos.md)
+Licensed under [MIT](./LICENSE).
